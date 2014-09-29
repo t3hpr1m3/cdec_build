@@ -1,0 +1,17 @@
+include_recipe 'apt'
+include_recipe 'build-essential'
+include_recipe 'git'
+include_recipe 'openssh'
+include_recipe 'python'
+
+apt_package 'curl'
+apt_package 'exuberant-ctags'
+apt_package 'vim-nox'
+apt_package 'tmux'
+apt_package 'xclip'
+apt_package 'libtool'
+apt_package 'libbz2-dev'
+apt_package 'libicu-dev'
+apt_package 'python2.7-dev'
+
+python_pip 'virtualenv'

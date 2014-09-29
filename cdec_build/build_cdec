@@ -1,0 +1,23 @@
+#!/bin/bash
+
+CDEC_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. $CDEC_DIR/env
+
+if [ ! -d $PREFIX/sw ]; then
+	mkdir $PREFIX/sw
+fi
+
+if [ ! -f "$PREFIX/sw/cdec-2014-06-15.tar.gz" ]; then
+	wget http://demo.clab.cs.cmu.edu/cdec/cdec-2014-06-15.tar.gz -O $PREFIX/sw/cdec-2014-06-15.tar.gz
+fi
+
+tar -xvzf $PREFIX/sw/cdec-2014-06-15.tar.gz -C $PREFIX/sw/
+
+cd $PREFIX/sw/cdec-2014-06-15
+
+autoreconf -ifv
+
+./configure --prefix=$PREFIX
+
+make
+
