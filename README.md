@@ -11,16 +11,22 @@ You will need the following Vagrant plugins installed:
 
 ## Building
 
-1.  Download and build [Boost](http://www.boost.org/):
+1.  Bootstrap the build environment
 
     ```shell
-    # /vagrant/cdec_root/bin/cdec_env /vagrant/build_boost
+	$ /vagrant/bootstrap
+	```
+
+2.  Download and build [Boost](http://www.boost.org/):
+
+    ```shell
+    $ /vagrant/cdec_root/bin/cdec_env /vagrant/build_boost
     ```
 
-2.  Download and build [cdec](http://www.cdec-decoder.org/):
+3.  Download and build [cdec](http://www.cdec-decoder.org/):
 
     ```shell
-    # /vagrant/cdec_root/bin/cdec_env /vagrant/build_cdec
+    $ /vagrant/cdec_root/bin/cdec_env /vagrant/build_cdec
     ```
 
 ## Packaging

@@ -4,27 +4,27 @@ WORKDIR="$CDEC_ROOT/tmp"
 PACKAGE="cdec-2014-06-15"
 PYTHONPATH="$WORKDIR/$PACKAGE/python"
 
-#if [ ! -d $WORKDIR ]; then
-#	mkdir -p $dir
-#fi
-#
-#if [ ! -f "$WORKDIR/$PACKAGE.tar.gz" ]; then
-#	wget http://demo.clab.cs.cmu.edu/cdec/$PACKAGE.tar.gz -O $WORKDIR/$PACKAGE.tar.gz
-#fi
-#
-#tar -xvzf $WORKDIR/$PACKAGE.tar.gz -C $WORKDIR
-#
-#cd $WORKDIR/$PACKAGE
-#
-#autoreconf -ifv
-#
-#./configure --prefix=$CDEC_ROOT
-#
-#make -j2 && make install
-#
-## Setup VirtualEnv for Python
-#
-#virtualenv $CDEC_ROOT
+if [ ! -d $WORKDIR ]; then
+	mkdir -p $dir
+fi
+
+if [ ! -f "/tmp/$PACKAGE.tar.gz" ]; then
+	wget http://demo.clab.cs.cmu.edu/cdec/$PACKAGE.tar.gz -O /tmp/$PACKAGE.tar.gz
+fi
+
+tar -xvzf /tmp/$PACKAGE.tar.gz -C $WORKDIR
+
+cd $WORKDIR/$PACKAGE
+
+autoreconf -ifv
+
+./configure --prefix=$CDEC_ROOT
+
+make -j2 && make install
+
+# Setup VirtualEnv for Python
+
+virtualenv $CDEC_ROOT
 
 cd $PYTHONPATH
 $CDEC_ROOT/bin/python $PYTHONPATH/setup.py build
