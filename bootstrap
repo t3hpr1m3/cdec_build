@@ -1,6 +1,9 @@
 #!/bin/bash
 
-export CDEC_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
+mkdir -p /vagrant/cdec_root/bin/
+
+cat << EOF > /vagrant/cdec_root/bin/cdec_env
+echo export CDEC_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
 export PATH="$CDEC_ROOT/bin:$PATH"
 export CPATH="$CDEC_ROOT/include"
 export LIBRARY_PATH="$CDEC_ROOT/lib:$CDEC_ROOT/lib64"
@@ -10,3 +13,6 @@ export LD_LIBRARY_PATH="$CDEC_ROOT/lib:$CDEC_ROOT/lib64"
 CMD=$1 && shift
 
 exec $CMD "$*"
+EOF
+
+chmod +x /vagrant/cdec_root/bin/cdec_env

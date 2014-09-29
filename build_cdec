@@ -2,31 +2,34 @@
 
 WORKDIR="$CDEC_ROOT/tmp"
 PACKAGE="cdec-2014-06-15"
-export PYTHONPATH="$WORKDIR/$PACKAGE/cdec/python"
+PYTHONPATH="$WORKDIR/$PACKAGE/python"
 
-if [ ! -d $WORKDIR ]; then
-	mkdir -p $dir
-fi
+#if [ ! -d $WORKDIR ]; then
+#	mkdir -p $dir
+#fi
+#
+#if [ ! -f "$WORKDIR/$PACKAGE.tar.gz" ]; then
+#	wget http://demo.clab.cs.cmu.edu/cdec/$PACKAGE.tar.gz -O $WORKDIR/$PACKAGE.tar.gz
+#fi
+#
+#tar -xvzf $WORKDIR/$PACKAGE.tar.gz -C $WORKDIR
+#
+#cd $WORKDIR/$PACKAGE
+#
+#autoreconf -ifv
+#
+#./configure --prefix=$CDEC_ROOT
+#
+#make -j2 && make install
+#
+## Setup VirtualEnv for Python
+#
+#virtualenv $CDEC_ROOT
 
-if [ ! -f "$WORKDIR/$PACKAGE.tar.gz" ]; then
-	wget http://demo.clab.cs.cmu.edu/cdec/$PACKAGE.tar.gz -O $WORKDIR/$PACKAGE.tar.gz
-fi
+cd $PYTHONPATH
+$CDEC_ROOT/bin/python $PYTHONPATH/setup.py build
+$CDEC_ROOT/bin/python $PYTHONPATH/setup.py install
 
-tar -xvzf $WORKDIR/$PACKAGE.tar.gz -C $WORKDIR
+# Strip debug symbols from all executables
 
-cd $WORKDIR/$PACKAGE
-
-autoreconf -ifv
-
-./configure --prefix=$CDEC_ROOT
-
-make -j2 && make install
-
-# Setup VirtualEnv for Python
-
-virtualenv $CDEC_ROOT
-
-cd $WORKDIR/$PACKAGE/python
-$CDEC_ROOT/bin/python setup.py build
-$CDEC_ROOT/bin/python setup.py install
-
+find $CDEC_ROOT/bin -type f -executable -exec strip -g {} \; >/dev/null 2>&1

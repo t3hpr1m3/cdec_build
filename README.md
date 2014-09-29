@@ -11,13 +11,13 @@ You will need the following Vagrant plugins installed:
 
 ## Building
 
-1.  Download and build [Boost](http://www.boost.org/)
+1.  Download and build [Boost](http://www.boost.org/):
 
     ```shell
     # /vagrant/cdec_root/bin/cdec_env /vagrant/build_boost
     ```
 
-2.  Download and build [cdec](http://www.cdec-decoder.org/)
+2.  Download and build [cdec](http://www.cdec-decoder.org/):
 
     ```shell
     # /vagrant/cdec_root/bin/cdec_env /vagrant/build_cdec
@@ -26,9 +26,11 @@ You will need the following Vagrant plugins installed:
 ## Packaging
 
 The entire cdec suite (including Boost) should now be contained in
-`/vagrant/cdec_root`, and can be archived, copied to another location.
+`/vagrant/cdec_root`, and can be zipped up and copied to a different
+location.  The caveat is that any calls to executables in the cdec
+suite will need to be wrapped in a call to `cdec_env`:
 
-Just make sure that you wrap calls to any of the cdec tools are wrapped
-in `cdec_env`, as in:
+```shell
+# /path/to/cdec/bin/cdec_env /path/to/cdec/bin/fast_align --help
+```
 
-`# /vagrant/cdec_root/bin/cdec_env /vagrant/cdec_root/bin/cdec --help`
