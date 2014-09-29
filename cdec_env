@@ -1,8 +1,0 @@
-export PREFIX="/vagrant/work/dest"
-export PATH="$PREFIX/bin:$PATH"
-export CPATH="$PREFIX/include"
-export LIBRARY_PATH="$PREFIX/lib:$PREFIX/lib64"
-export LD_RUN_PATH="$PREFIX/lib:$PREFIX/lib64"
-export LD_LIBRARY_PATH="$PREFIX/lib:$PREFIX/lib64"
-export PYTHONPATH="$PREFIX/sw/cdec/python"
-

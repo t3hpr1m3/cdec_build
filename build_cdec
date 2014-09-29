@@ -1,0 +1,32 @@
+#!/bin/bash
+
+WORKDIR="$CDEC_ROOT/tmp"
+PACKAGE="cdec-2014-06-15"
+export PYTHONPATH="$WORKDIR/$PACKAGE/cdec/python"
+
+if [ ! -d $WORKDIR ]; then
+	mkdir -p $dir
+fi
+
+if [ ! -f "$WORKDIR/$PACKAGE.tar.gz" ]; then
+	wget http://demo.clab.cs.cmu.edu/cdec/$PACKAGE.tar.gz -O $WORKDIR/$PACKAGE.tar.gz
+fi
+
+tar -xvzf $WORKDIR/$PACKAGE.tar.gz -C $WORKDIR
+
+cd $WORKDIR/$PACKAGE
+
+autoreconf -ifv
+
+./configure --prefix=$CDEC_ROOT
+
+make -j2 && make install
+
+# Setup VirtualEnv for Python
+
+virtualenv $CDEC_ROOT
+
+cd $WORKDIR/$PACKAGE/python
+$CDEC_ROOT/bin/python setup.py build
+$CDEC_ROOT/bin/python setup.py install
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export CDEC_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )"
+export PATH="$CDEC_ROOT/bin:$PATH"
+export CPATH="$CDEC_ROOT/include"
+export LIBRARY_PATH="$CDEC_ROOT/lib:$CDEC_ROOT/lib64"
+export LD_RUN_PATH="$CDEC_ROOT/lib:$CDEC_ROOT/lib64"
+export LD_LIBRARY_PATH="$CDEC_ROOT/lib:$CDEC_ROOT/lib64"
+
+CMD=$1 && shift
+
+exec $CMD "$*"

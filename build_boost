@@ -1,0 +1,26 @@
+#!/bin/bash
+
+WORKDIR="$CDEC_ROOT/tmp"
+
+if [ -z "$BOOST_VERSION" ]; then
+	BOOST_VERSION="1.49.0"
+fi
+
+BOOST_VERSION_=$(echo $BOOST_VERSION | sed s/\\./_/g)
+
+if [ ! -d $WORKDIR ]; then
+	mkdir -p $WORKDIR
+fi
+
+if [ ! -f "$WORKDIR/boost_$BOOST_VERSION_.tar.gz" ]; then
+	wget "http://sourceforge.net/projects/boost/files/boost/$BOOST_VERSION/boost_$BOOST_VERSION_.tar.gz/download" -O $WORKDIR/boost_$BOOST_VERSION_.tar.gz
+fi
+
+tar -xvzf $WORKDIR/boost_$BOOST_VERSION_.tar.gz -C $WORKDIR
+
+cd $WORKDIR/boost_$BOOST_VERSION_
+
+./bootstrap.sh
+
+./b2 install -j2 --prefix=$CDEC_ROOT
+
