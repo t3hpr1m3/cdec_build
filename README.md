@@ -14,13 +14,13 @@ You will need the following Vagrant plugins installed:
 1.  Download and build [Boost](http://www.boost.org/)
 
     ```shell
-    # /vagrant/cdec/bin/cdec_env /vagrant/build_boost
+    # /vagrant/cdec_root/bin/cdec_env /vagrant/build_boost
     ```
 
 2.  Download and build [cdec](http://www.cdec-decoder.org/)
 
     ```shell
-    # /vagrant/cdec/bin/cdec_env /vagrant/build_cdec
+    # /vagrant/cdec_root/bin/cdec_env /vagrant/build_cdec
     ```
 
 ## Packaging
