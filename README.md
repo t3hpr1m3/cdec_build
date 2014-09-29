@@ -1,6 +1,6 @@
-= Building CDEC
+# Building CDEC
 
-== Prerequisites
+# Prerequisites
 
 You will need the following Vagrant plugins installed:
 
@@ -9,7 +9,7 @@ You will need the following Vagrant plugins installed:
 3.  vagrant-vbguest
 4.  vagrant-cachier (optional, but recommended)
 
-== Building
+## Building
 
 1.  Download and build (Boost)[http://www.boost.org]
 
